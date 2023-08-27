@@ -1,4 +1,4 @@
-package com.smart.test.smarttest;
+package com.smart.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
