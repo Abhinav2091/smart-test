@@ -47,7 +47,11 @@ public class MockTest {
     @Column(nullable = false)
     @JsonProperty("updated_date")
     private LocalDateTime updatedDate = LocalDateTime.now();
-    ;
+
+    @Column(nullable = false)
+    @JsonProperty("created_date")
+    private LocalDateTime createdDate = LocalDateTime.now();
+
 
 
 }

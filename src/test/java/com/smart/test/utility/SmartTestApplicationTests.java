@@ -1,4 +1,4 @@
-package com.smart.test;
+package com.smart.test.utility;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

@@ -41,6 +41,7 @@ public class User {
     private Boolean status = true;
 
     @JsonProperty("updated_date")
-    private LocalDateTime updatedDate = LocalDateTime.now();;
+    private LocalDateTime updatedDate = LocalDateTime.now();
+
 
 }
