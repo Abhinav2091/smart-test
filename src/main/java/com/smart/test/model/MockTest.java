@@ -3,14 +3,19 @@ package com.smart.test.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.smart.test.enums.SubscriptionTypeEnum;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
 @Entity(name = "mock_test")
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class MockTest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +56,6 @@ public class MockTest {
     @Column(nullable = false)
     @JsonProperty("created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
-
 
 
 }

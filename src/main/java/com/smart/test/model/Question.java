@@ -3,12 +3,17 @@ package com.smart.test.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.smart.test.enums.QuestionTypeEnum;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity(name = "question")
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,12 +2,17 @@ package com.smart.test.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity(name = "answer")
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Answer {
 
     @Id
@@ -27,7 +32,6 @@ public class Answer {
     @Column(nullable = false)
     @JsonProperty("created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
-
 
 
 }
