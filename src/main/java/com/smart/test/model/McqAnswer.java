@@ -1,43 +1,34 @@
 package com.smart.test.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.smart.test.enums.QuestionTypeEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity(name = "question")
+@Entity(name = "mcq_answer")
 @Data
-public class Question {
+@NoArgsConstructor
+@AllArgsConstructor
+public class McqAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "q_no")
-    private Long qNo;
+    private int level;
 
-    @Column(name = "q_type")
-    private QuestionTypeEnum qType;
+    private String value;
 
-    @Column(nullable = false, length = 10000)
-    private String content;
-
-    private Double marks;
-
-    private String description;
+    @Column(name = "is_correct")
+    private Boolean isCorrect = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private MockTest mockTest;
-
+    private Question question;
     @Column(nullable = false, name = "updated_date")
     private LocalDateTime updatedDate = LocalDateTime.now();
 
     @Column(nullable = false, name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
-
-    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
-    private List<McqAnswer> mcqAnswerList;
-
 }

@@ -6,9 +6,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "answer")
+@Entity(name = "subjective_answer")
 @Data
-public class Answer {
+public class SubjectiveAnswer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +20,10 @@ public class Answer {
     @OneToOne
     private Question question;
 
-    @Column(nullable = false)
-    @JsonProperty("updated_date")
+    @Column(nullable = false,name = "updated_date")
     private LocalDateTime updatedDate = LocalDateTime.now();
 
-    @Column(nullable = false)
-    @JsonProperty("created_date")
+    @Column(nullable = false,name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
 
 

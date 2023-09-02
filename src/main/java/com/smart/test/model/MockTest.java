@@ -17,41 +17,39 @@ public class MockTest {
     private Long id;
 
     @OneToMany(mappedBy = "mockTest")
-    private List<Category> catIds;
+    private List<SubCategory> catIds;
+
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    private LocalTime duration;
+    private int duration;
 
-    @JsonProperty("total_marks")
+    @Column(name = "total_marks")
     private Double totalMarks;
 
-    @JsonProperty("min_marks")
+    @Column(name = "min_marks")
     private Double minMarks;
 
-    @JsonProperty("sub_type")
+    @Column(name = "subscription_type")
     private SubscriptionTypeEnum subType;
 
     private Double amount;
 
     private String instruction;
 
-    @JsonProperty("result_type")
-
+    @Column(name = "result_type")
     private String resultType;
 
     @OneToMany(mappedBy = "mockTest", fetch = FetchType.LAZY)
     private List<Question> questionList;
 
-    @Column(nullable = false)
-    @JsonProperty("updated_date")
+    @Column(nullable = false,name = "updated_date")
     private LocalDateTime updatedDate = LocalDateTime.now();
 
-    @Column(nullable = false)
-    @JsonProperty("created_date")
+    @Column(nullable = false,name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
-
 
 
 }

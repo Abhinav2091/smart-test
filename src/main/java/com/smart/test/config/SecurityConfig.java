@@ -1,29 +1,43 @@
 package com.smart.test.config;
 
+import com.smart.test.jwt.JWTAuthenticateFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-public class SecurityConfig{
-/*
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }*/
+@EnableWebSecurity
+@RequiredArgsConstructor
+public class SecurityConfig {
+
+    private final JWTAuthenticateFilter jwtAuthFilter;
+
+    private final AuthenticationProvider authenticationProvider;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        //Authenticate all the api
-        httpSecurity.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
-        //setting defaults for entering basic Authenticate
-        //a pop up will generate here for username and password
-        httpSecurity.httpBasic(Customizer.withDefaults());
-        //disable CSRF to access post and put api
-        httpSecurity.csrf().disable();
+        httpSecurity
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests
+                        (auth -> auth.requestMatchers("/**")
+                                        .permitAll()
+                                //      .anyRequest()
+                                //    .authenticated()
+                        )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+
         return httpSecurity.build();
     }
 }
