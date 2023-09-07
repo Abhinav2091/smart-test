@@ -16,4 +16,9 @@ public class SubjectiveAnswerServiceImpl implements SubjectiveAnswerService {
     public void addAll(List<SubjectiveAnswer> subjectiveAnswerList) {
         subjectiveAnswerRepo.saveAll(subjectiveAnswerList);
     }
+
+    @Override
+    public SubjectiveAnswer getByQuestionID(Long qId) {
+        return subjectiveAnswerRepo.findByQuestionId(qId);
+    }
 }

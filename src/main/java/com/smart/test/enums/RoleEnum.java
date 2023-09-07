@@ -1,6 +1,6 @@
 package com.smart.test.enums;
 
-public enum Role {
+public enum RoleEnum {
     USER,
     ADMIN
 }

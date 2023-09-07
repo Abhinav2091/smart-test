@@ -18,4 +18,9 @@ public class McqAnswerServiceImpl implements McqAnswerService {
     public void addAll(List<McqAnswer> mcqAnswerList) {
         mcqAnswerRepo.saveAll(mcqAnswerList);
     }
+
+    @Override
+    public List<McqAnswer> getAllByQuestionId(Long qId) {
+        return mcqAnswerRepo.findAllByQuestionId(qId);
+    }
 }

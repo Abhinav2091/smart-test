@@ -1,6 +1,10 @@
 package com.smart.test.dto;
 
-public record McqAnswerDTO(boolean value,
-                            int level,
-                            String label) {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record McqAnswerDTO(
+        @JsonProperty("mcqAnswerValue") boolean value,
+        int level,
+        @JsonProperty("mcqAnswerLabel")
+        String label) {
 }

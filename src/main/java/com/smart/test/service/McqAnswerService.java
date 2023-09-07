@@ -7,4 +7,6 @@ import java.util.List;
 public interface McqAnswerService {
 
     void addAll(List<McqAnswer> mcqAnswerList);
+
+    List<McqAnswer> getAllByQuestionId(Long qId);
 }

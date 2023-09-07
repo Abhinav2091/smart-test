@@ -1,24 +1,30 @@
 package com.smart.test.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.smart.test.enums.QuestionTypeEnum;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity(name = "question")
 @Data
+@Getter
+@Setter
+@ToString
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "q_no")
     private Long qNo;
 
     @Column(name = "q_type")
+    @Enumerated(EnumType.STRING)
     private QuestionTypeEnum qType;
 
     @Column(nullable = false, length = 10000)

@@ -6,7 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
+
 @SpringBootApplication
+
+
+
 
 public class SmartTestApplication {
 
@@ -17,7 +22,9 @@ public class SmartTestApplication {
 		LOGGER.info("Application started");
     }
 
+
     public static void main(String[] args) {
+
 		LOGGER.info("Application executed");
         SpringApplication.run(SmartTestApplication.class, args);
     }

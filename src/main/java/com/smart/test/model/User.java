@@ -1,10 +1,11 @@
 package com.smart.test.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.smart.test.enums.Role;
+import com.smart.test.enums.RoleEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,6 +19,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class User implements UserDetails {
 
     @Id
@@ -48,7 +50,8 @@ public class User implements UserDetails {
 
     private Boolean status = true;
 
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private RoleEnum role;
 
     @Column(name = "updated_date")
     private LocalDateTime updatedDate = LocalDateTime.now();

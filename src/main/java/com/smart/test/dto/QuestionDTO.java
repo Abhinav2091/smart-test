@@ -6,13 +6,14 @@ import java.util.List;
 
 public record QuestionDTO(
 
-        @JsonProperty("q-no") long sNo,
+        @JsonProperty("questionNo") long sNo,
         String question,
         Double marks,
+        @JsonProperty("questionType")
         String type,
-        @JsonProperty("subjective-answer")
+        @JsonProperty("subjectiveAnswer")
         String subjectiveAnswer,
-        @JsonProperty("mcq-answers")
+        @JsonProperty("mcqAnswers")
         List<McqAnswerDTO> mcqAnswers
         ) {
 }

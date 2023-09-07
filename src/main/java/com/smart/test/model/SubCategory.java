@@ -1,10 +1,10 @@
 package com.smart.test.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -12,10 +12,11 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class SubCategory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(nullable = false, name = "c_name")
@@ -27,8 +28,8 @@ public class SubCategory {
     @ManyToOne(fetch = FetchType.LAZY)
     private MockTest mockTest;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cat_id")
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category catId;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SubjectiveAnswerRepo extends JpaRepository<SubjectiveAnswer, Long> {
+    SubjectiveAnswer findByQuestionId(Long qId);
 }

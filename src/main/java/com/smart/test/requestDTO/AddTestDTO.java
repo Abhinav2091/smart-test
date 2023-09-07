@@ -9,17 +9,22 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public record AddTestDTO(
+        @JsonProperty("testName")
         @NotNull(message = "name of question is required")
         String name,
         int duration,
-        @JsonProperty("result-type")
+        //@JsonProperty("result-type")
         String resultType,
-        @JsonProperty("paid-subscription")
+
+        int currency,
+        @JsonProperty("isPaid")
         boolean paidSubscription,
         double amount,
         List<CategoryDTO> categories,
+        @JsonProperty("instructions")
         String instruction,
         List<QuestionDTO> questions,
+        @JsonProperty("passingMarks")
         int minMarks
 ) {
 }

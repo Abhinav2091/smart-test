@@ -1,19 +1,17 @@
 package com.smart.test.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.smart.test.enums.SubscriptionTypeEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 @Entity(name = "mock_test")
 @Data
 public class MockTest {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @OneToMany(mappedBy = "mockTest")
@@ -33,6 +31,7 @@ public class MockTest {
     private Double minMarks;
 
     @Column(name = "subscription_type")
+    @Enumerated(EnumType.STRING)
     private SubscriptionTypeEnum subType;
 
     private Double amount;
@@ -50,6 +49,10 @@ public class MockTest {
 
     @Column(nullable = false,name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "currency-id")
+    private Currency currency;
 
 
 }

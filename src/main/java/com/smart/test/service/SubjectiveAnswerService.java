@@ -7,4 +7,6 @@ import java.util.List;
 public interface SubjectiveAnswerService {
 
     void addAll(List<SubjectiveAnswer> subjectiveAnswerList);
+
+    SubjectiveAnswer getByQuestionID(Long qId);
 }

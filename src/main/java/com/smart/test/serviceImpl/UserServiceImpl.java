@@ -1,18 +1,20 @@
 package com.smart.test.serviceImpl;
 
+import com.smart.test.dao.CurrencyRepo;
 import com.smart.test.dao.UserRepo;
-import com.smart.test.enums.Role;
+import com.smart.test.enums.RoleEnum;
 import com.smart.test.mapper.UserMapper;
+import com.smart.test.model.Currency;
 import com.smart.test.model.User;
 import com.smart.test.requestDTO.AddUserDto;
 import com.smart.test.service.UserService;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Service
 @AllArgsConstructor
@@ -30,9 +32,15 @@ public class UserServiceImpl implements UserService {
 
     }
     //TODO has to remove it later
+
+    private final CurrencyRepo currencyRepo;
     @PostConstruct
     public void insert(){
         userRepo.save(new User(1L,"Abhinav","test.abhinav@gmail.com","9876578398","+91","password", LocalDateTime.now(),null,
-                true, Role.ADMIN,LocalDateTime.now()));
+                true, RoleEnum.ADMIN,LocalDateTime.now()));
+        currencyRepo.saveAll(Arrays.asList(new Currency(1L,LocalDateTime.now(),LocalDateTime.now(),"INR"),
+                new Currency(2L,LocalDateTime.now(),LocalDateTime.now(),"USD"),
+                new Currency(3L,LocalDateTime.now(),LocalDateTime.now(),"JPY")));
+
     }
 }
